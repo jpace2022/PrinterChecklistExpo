@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 
-const Checklist = ({ items }) => {
-    const [checkedItems, setCheckedItems] = useState({});
+const Checklist = ({ items }: { items: string[] }) => {
+    const [checkedItems, setCheckedItems] = useState<Record<string, boolean>>({});
 
-    const handleCheck = (item) => {
+    const handleCheck = (item: string) => {
         setCheckedItems((prev) => ({
             ...prev,
             [item]: !prev[item],
