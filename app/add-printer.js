@@ -1,5 +1,5 @@
 import { View, StyleSheet } from 'react-native';
-import { AddPrinterScreen } from './screens/AddPrinterScreen';
+import AddPrinterScreen from './screens/AddPrinterScreen';
 
 export default function AddPrinterRoute() {
   return (
