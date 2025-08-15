@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, FlatList, TouchableOpacity } from 'react-native';
-import { Printer } from '../types';
+import { Printer } from '../app/types';
 
 interface PrinterListProps {
   printers: Printer[];

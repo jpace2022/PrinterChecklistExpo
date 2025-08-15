@@ -1,5 +1,5 @@
 import { View, StyleSheet } from 'react-native';
-import { ChecklistScreen } from './screens/ChecklistScreen';
+import ChecklistScreen from './screens/ChecklistScreen';
 
 export default function ChecklistRoute() {
   return (
