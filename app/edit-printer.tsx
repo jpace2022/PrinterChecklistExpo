@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import { router, useLocalSearchParams } from 'expo-router';
+import React, { useEffect, useState } from 'react';
 import {
-  View,
-  Text,
-  TextInput,
-  StyleSheet,
-  ScrollView,
-  TouchableOpacity,
-  Alert,
+    Alert,
+    ScrollView,
+    StyleSheet,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    View,
 } from 'react-native';
-import { useLocalSearchParams, router } from 'expo-router';
-import { getPrinter, updatePrinter } from '../api/printerService';
-import { Printer } from '../types';
+import { getPrinter, updatePrinter } from './api/printerService';
+import { Printer } from './types';
 
 export default function EditPrinterScreen() {
 const { id } = useLocalSearchParams();
@@ -36,7 +36,7 @@ const loadPrinter = async () => {
             setFormData({
                 name: data.name,
                 ipAddress: data.ipAddress,
-                location: data.location,
+                location: data.location || '',
                 piHostname: data.piHostname || '',
                 securityInfo: data.securityInfo || '',
                 notes: data.notes || '',
@@ -51,11 +51,11 @@ const handleSubmit = async () => {
         return;
     }
 
-    const updated = await updatePrinter(id as string, formData);
-    if (updated) {
+    try {
+        await updatePrinter(id as string, formData);
         Alert.alert('Success', 'Printer updated successfully');
         router.back();
-    } else {
+    } catch (error) {
         Alert.alert('Error', 'Failed to update printer');
     }
 };

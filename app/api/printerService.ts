@@ -37,6 +37,9 @@ export const addPrinter = async (printerData: {
             printerDriver: printerData.printerDriver,
             webServicesEnabled: printerData.webServicesEnabled,
             notes: printerData.notes,
+            location: '',
+            piHostname: '',
+            securityInfo: ''
         };
         const updatedPrinters = [...existingPrinters, newPrinter];
         await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(updatedPrinters));
@@ -53,6 +56,16 @@ export const getAllPrinters = async (): Promise<Printer[]> => {
     } catch (error) {
         console.error('Error getting printers:', error);
         return [];
+    }
+};
+
+export const getPrinter = async (id: string): Promise<Printer | null> => {
+    try {
+        const printers = await getAllPrinters();
+        return printers.find(printer => printer.id === id) || null;
+    } catch (error) {
+        console.error('Error getting printer:', error);
+        return null;
     }
 };
 

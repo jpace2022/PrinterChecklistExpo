@@ -1,4 +1,7 @@
 export interface Printer {
+    location: string;
+    piHostname: string;
+    securityInfo: string;
     id: string;
     name: string;
     ipAddress: string;
